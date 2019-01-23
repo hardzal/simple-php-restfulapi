@@ -28,6 +28,7 @@ if($num > 0) {
             'id' => $id,
             'title' => $title,
             'body' => html_entity_decode($body),
+            'user_id' => $user_id,
             'username' => $username,
             'category_id' => $category_id,
             'category_name' => $category_name,

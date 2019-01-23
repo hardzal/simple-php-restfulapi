@@ -89,6 +89,35 @@ class Post {
     
     }
 
+    public function create() {
+        $query = 'INSERT INTO '. $this->table .'
+            SET
+                user_id = :user_id,
+                category_id = :category_id,
+                title = :title,
+                body = :body';
+        
+        $statement = $this->connect->prepare($query);
+
+        $this->title = htmlspecialchars(strip_tags($this->title));
+        $this->body = htmlspecialchars(strip_tags($this->body));
+        $this->user_id = htmlspecialchars(strip_tags($this->user_id));
+        $this->category_id = htmlspecialchars(strip_tags($this->category_id));
+
+        $statement->bindParam(':user_id', $this->user_id);
+        $statement->bindParam(':category_id', $this->category_id);
+        $statement->bindParam(':title', $this->title);
+        $statement->bindParam(':body', $this->body);
+
+        if($statement->execute()) {
+            return true;
+        }
+
+        printf("Error : %s.\n", $statement->error);
+        
+        return false;
+    }
+
     public function update() {
 
     }
