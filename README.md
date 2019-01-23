@@ -23,13 +23,6 @@
      - POST /api/tags/create.php
      - PUT /api/tags/update.php
      - DELETE /api/tags/delete.php
-  
-   - Users
-     - GET /api/users/index.php
-     - GET /api/users/show.php?id=$id
-     - POST /api/users/create.php
-     - PUT /api/users/update.php
-     - DELETE /api/users/delete.php
 
    - Posts by Category (one to many)
       - GET /api/posts.php?category=$id
@@ -39,3 +32,10 @@
   
    - Posts by tags (many to many)
       - GET /api/posts.php?tag=$id 
+
+   - Users
+     - GET /api/users/index.php
+     - GET /api/users/show.php?id=$id
+     - POST /api/users/create.php
+     - PUT /api/users/update.php
+     - DELETE /api/users/delete.php
