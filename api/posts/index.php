@@ -37,9 +37,9 @@ if($num > 0) {
 
         array_push($post_array['posts'], $post_item);
     }
-    echo json_encode($post_array);
+    print_r(json_encode($post_array));
 } else {
-    echo json_encode(
+    print_r(json_encode(
         array('message' => 'No posts found')
-    );
+    ));
 }
