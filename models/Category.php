@@ -93,6 +93,19 @@ class Category {
     }
 
     public function delete() {
+        $query = 'DELETE FROM '. $this->table .' 
+            WHERE id = :id';
 
+        $statement = $this->connect->prepare($query);
+
+        $statement->bindParam(':id', $this->id);
+
+        if($statement->execute()) {
+            return true;
+        }
+
+        printf("Error : %s.\n", $statement->error);
+
+        return false;
     }
 }
