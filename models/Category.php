@@ -51,7 +51,22 @@ class Category {
     }
 
     public function create() {
+        $query = 'INSERT INTO '. $this->table. '
+            SET 
+                name = :name';
+        $statement = $this->connect->prepare($query);
 
+        $this->name = htmlspecialchars(strip_tags($this->name));
+
+        $statement->bindParam(':name', $this->name);
+
+        if($statement->execute()) {
+            return true;
+        }
+
+        printf("Error : %s.\n", $statement->error);
+
+        return false;
     }
 
     public function update() {
