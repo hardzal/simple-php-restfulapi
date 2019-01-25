@@ -19,7 +19,7 @@ echo $num;
 
 if($num > 0) {
     $posts_array = array();
-    $post_array['posts'] = array();
+    $posts_array['posts'] = array();
 
     while($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
@@ -36,9 +36,9 @@ if($num > 0) {
             'updated_at' => $updated_at
         );
 
-        array_push($post_array['posts'], $post_item);
+        array_push($posts_array['posts'], $post_item);
     }
-    print_r(json_encode($post_array));
+    print_r(json_encode($posts_array));
 } else {
     print_r(json_encode(
         array('message' => 'No posts found')
