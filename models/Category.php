@@ -70,7 +70,26 @@ class Category {
     }
 
     public function update() {
+        $query = 'UPDATE '. $this->table. '
+            SET
+                name = :name 
+            WHERE 
+                id = :id';
 
+        $statement = $this->connect->prepare($query);
+
+        $this->name = htmlspecialchars(strip_tags($this->name));
+
+        $statement->bindParam(':id', $this->id);
+        $statement->bindParam(':name', $this->name);
+
+        if($statement->execute()) {
+            return true;
+        }
+
+        printf("Error : %s.\n", $statement->error);
+
+        return false;
     }
 
     public function delete() {
