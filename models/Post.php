@@ -170,4 +170,16 @@ class Post {
 
         return false;
     }
+
+    public function show_posts_by_category() {
+
+    }
+
+    public function show_posts_by_user() {
+
+    }
+
+    public function show_posts_by_tag() {
+        
+    }
 }

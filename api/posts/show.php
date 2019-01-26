@@ -15,7 +15,7 @@ $post->id = isset($_GET['id']) ? $_GET['id'] : die();
 
 $post->show();
 
-$posts_array = array(
+$post_array = array(
     'id' => $post->id,
     'user_id' => $post->user_id,
     'username' => $post->user_name,
