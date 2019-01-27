@@ -172,11 +172,32 @@ class Post {
     }
 
     public function show_posts_by_category() {
-
+        $query = 'SELECT 
+            p.id,
+            p.category_id
+            p.title,
+            p.body,
+            c.name as category_name,
+            p.created_at,
+            p.updated_at
+        FROM '. $this->table .' p 
+        LEFT JOIN categories c ON p.category_id=c.id
+        WHERE p.category_id = ?';
     }
 
     public function show_posts_by_user() {
-
+        $query = 'SELECT 
+        p.id,
+        p.user_id
+        p.category_id,
+        p.title,
+        p.body,
+        c.name as category_name,
+        p.created_at,
+        p.updated_at
+    FROM '. $this->table .' p 
+    LEFT JOIN categories c ON p.category_id=c.id
+    WHERE p.user_id = ?';
     }
 
     public function show_posts_by_tag() {
