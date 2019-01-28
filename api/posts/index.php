@@ -15,8 +15,6 @@ $result = $post->index();
 
 $num = $result->rowCount();
 
-echo $num;
-
 if($num > 0) {
     $posts_array = array();
     $posts_array['posts'] = array();

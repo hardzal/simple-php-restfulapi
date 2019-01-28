@@ -39,3 +39,9 @@ INSERT INTO categories
         ('', 'Science', now(), ''),
         ('', 'Mathematic', now(), '');
         
+CREATE TABLE tags (
+  `id` int(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,  
+   `name` VARCHAR(255) NOT NULL,
+   `created_at` timestamp,
+   `updated_at` timestamp
+);

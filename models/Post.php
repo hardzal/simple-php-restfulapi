@@ -10,6 +10,7 @@ class Post {
     // attributes table
     public $id;
     public $category_id;
+    public $tag_id;
     public $category_name;
     public $tile;
     public $body;
@@ -174,6 +175,38 @@ class Post {
     public function show_posts_by_category() {
         $query = 'SELECT 
             p.id,
+            p.user_id,
+            u.username,
+            p.category_id,
+            p.title,
+            p.body,
+            c.name as category_name,
+            p.created_at,
+            p.updated_at
+        FROM '. $this->table .' p 
+            LEFT JOIN 
+            categories c ON p.category_id = c.id
+        LEFT JOIN
+            users u ON p.user_id = u.id
+        WHERE 
+            p.category_id = ? 
+        ORDER BY 
+            p.created_at DESC';
+
+        $statement = $this->connect->prepare($query);
+
+        $statement->bindParam(1, $this->category_id);
+
+        $statement->execute();
+
+        return $statement;
+    }
+
+    public function show_posts_by_user() {
+        $query = 'SELECT 
+            p.id,
+            p.user_id,
+            u.username,
             p.category_id
             p.title,
             p.body,
@@ -181,26 +214,33 @@ class Post {
             p.created_at,
             p.updated_at
         FROM '. $this->table .' p 
-        LEFT JOIN categories c ON p.category_id=c.id
-        WHERE p.category_id = ?';
-    }
+            LEFT JOIN 
+            categories c ON p.category_id = c.id
+        LEFT JOIN
+            users u ON p.user_id = u.id
+        WHERE 
+            p.user_id = ? 
+        ORDER BY 
+            p.created_at DESC';
 
-    public function show_posts_by_user() {
-        $query = 'SELECT 
-        p.id,
-        p.user_id
-        p.category_id,
-        p.title,
-        p.body,
-        c.name as category_name,
-        p.created_at,
-        p.updated_at
-    FROM '. $this->table .' p 
-    LEFT JOIN categories c ON p.category_id=c.id
-    WHERE p.user_id = ?';
+        $statement = $this->connect->prepare($query);
+
+        $statement->bindParam(1, $this->user_id);
+
+        $statement->execute();
+
+        return $statement;
     }
 
     public function show_posts_by_tag() {
-        
+        $query = '';
+
+        $statement = $this->connect->prepare($query);
+
+        $statement->bindParam(1, $this->tag_id);
+
+        $statement->execute();
+
+        return $statement;    
     }
 }
