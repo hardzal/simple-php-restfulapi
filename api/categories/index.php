@@ -31,8 +31,12 @@ if($num > 0) {
 
         array_push($categories_array['categories'], $category_item);
     }
+    http_response_code(200);
+
     print_r(json_encode($categories_array));
 } else {
+    http_response_code(404);
+    
     print_r(json_encode(
         array('message' => 'No categories found')
     ));
