@@ -36,7 +36,8 @@
    - Users
      - **GET** /api/users/index.php
      - **GET** /api/users/show.php?id=$id
-     - **POST** /api/users/signup.php
-     - **POST** /api/users/login.php
      - **PUT** /api/users/update.php
      - **DELETE** /api/users/delete.php
+     - **POST** /api/users/signup.php
+     - **POST** /api/users/login.php
+     - **POST** /api/users/forgot_password.php

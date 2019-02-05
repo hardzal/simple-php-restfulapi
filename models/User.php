@@ -14,7 +14,8 @@ class User {
     public function show() {
         
     }
-
+    
+    // signup user
     public function create() {
 
     }
@@ -24,6 +25,14 @@ class User {
     }
 
     public function delete() {
+
+    }
+
+    public function login() {
+        
+    }
+
+    public function forgotPassword() {
 
     }
 }
