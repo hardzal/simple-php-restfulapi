@@ -11,6 +11,7 @@ class Post {
     public $id;
     public $category_id;
     public $tag_id;
+    public $tag_name;
     public $category_name;
     public $tile;
     public $body;
@@ -87,7 +88,6 @@ class Post {
         $this->category_id = $row['category_id'];
         $this->created_at = $row['created_at'];
         $this->updated_at = $row['updated_at'];
-    
     }
 
     public function create() {
@@ -104,6 +104,7 @@ class Post {
         $this->body = htmlspecialchars(strip_tags($this->body));
         $this->user_id = htmlspecialchars(strip_tags($this->user_id));
         $this->category_id = htmlspecialchars(strip_tags($this->category_id));
+        
 
         $statement->bindParam(':user_id', $this->user_id);
         $statement->bindParam(':category_id', $this->category_id);

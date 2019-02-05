@@ -19,6 +19,8 @@ $post->user_id = $data->user_id;
 $post->category_id = $data->category_id;
 $post->title = $data->title;
 $post->body = $data->body;
+$post->tag_id = $data->tag_id;
+$post->tag_name = $data->tag_name;
 
 if($post->create()) {
     print_r(json_encode(

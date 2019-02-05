@@ -30,6 +30,9 @@ if($num > 0) {
             'username' => $username,
             'category_id' => $category_id,
             'category_name' => $category_name,
+            'tags' => [
+                $tag_id => $tag_name
+            ],
             'created_at' => $created_at,
             'updated_at' => $updated_at
         );
