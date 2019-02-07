@@ -10,6 +10,7 @@ class Post {
     // attributes table
     public $id;
     public $category_id;
+    public $tags;
     public $tag_id;
     public $tag_name;
     public $category_name;
@@ -243,5 +244,9 @@ class Post {
         $statement->execute();
 
         return $statement;    
+    }
+
+    public function show_tags() {
+        $query = '';
     }
 }

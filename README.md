@@ -25,13 +25,13 @@
      - **DELETE** /api/tags/delete.php
 
    - Posts by Category (one to many)
-      - **GET** /api/posts.php?category=$id
+      - **GET** /api/posts/posts.php?category=$id
   
    - Posts by user (one to many)
-      - **GET** /api/posts.php?user=$id
+      - **GET** /api/posts/posts.php?user=$id
   
    - Posts by tags (many to many)
-      - **GET** /api/posts.php?tag=$id 
+      - **GET** /api/posts/posts.php?tag=$id 
 
    - Users
      - **GET** /api/users/index.php

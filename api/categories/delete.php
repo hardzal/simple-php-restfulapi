@@ -24,6 +24,6 @@ if($category->delete()) {
     ));
 } else {
     print_r(json_encode(
-        array('message' => 'Category not updated')
+        array('message' => 'Category not deleteds')
     ));
 }
