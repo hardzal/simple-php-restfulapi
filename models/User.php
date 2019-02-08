@@ -102,7 +102,23 @@ class User {
     }
 
     public function delete() {
+        $query = 'DELETE FROM '. $this->table .'
+            WHERE
+                id = :id';
+        
+        $statement = $this->connect->prepare($query);
 
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        $statement->bindParam(':id', $this->id);
+
+        if($statement->execute()) {
+            return true;
+        }
+
+        printf("Erorr : %s.\n", $statement->error);
+
+        return false;
     }
 
     public function login() {
