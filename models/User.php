@@ -72,7 +72,33 @@ class User {
     }
 
     public function update() {
+        $query = 'UPDATE '. $this->table .'
+            SET
+                username = :username,
+                name = :name,
+                email = :email
+            WHERE
+                id = :id';
+        
+        $statement = $this->connect->prepare($query);
 
+        $this->username = htmlspecialchars(strip_tags($this->username));
+        $this->name = htmlspecialchars(strip_tags($this->name));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        $statement->bindParam(':username', $this->username);
+        $statement->bindParam(':name', $this->name);
+        $statement->bindParam(':email', $this->email);
+        $statement->bindParam(':id', $this->id);
+
+        if($statement->execute()) {
+            return true;
+        }
+
+        printf("Erorr : %s.\n", $statement->error);
+
+        return false;
     }
 
     public function delete() {
