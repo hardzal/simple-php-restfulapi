@@ -2,6 +2,10 @@
 
 class User {
 
+    private $connect;
+    private $table = 'users';
+
+    
     public function __construct($connect)
     {
         
