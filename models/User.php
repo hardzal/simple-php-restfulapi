@@ -147,7 +147,33 @@ class User {
     }
 
     public function login() {
+        $query = 'SELECT 
+                username,
+                password,
+                email,
+                name,
+            FROM '. $this->table. '    
+            WHERE email = ? OR username = ?';
         
+        $statement = $this->connect->prepare($query);
+
+        $this->username = htmlspecialchars(strip_tags($this->username));
+        $this->password = htmlspecialchars(strip_tags($this->password));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+
+        $statement->bindParam(1, $this->username);
+        $statement->bindParam(2, $this->email);
+
+        if($statement->execute()) {
+            $user = $statement->fetch(PDO::FETCH_ASSOC);
+            if(password_verify($this->password, $user['password'])) {
+                return true;
+            }
+        }
+
+        printf("Error : %s", $statement->error);
+
+        return false;
     }
 
     public function forgotPassword() {

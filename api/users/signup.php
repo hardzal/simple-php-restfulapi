@@ -17,9 +17,8 @@ $data = json_decode(file_get_contents("php://input"));
 
 $user->username = $data->username;
 $user->password = password_hash($data->password, PASSWORD_DEFAULT);
-$user->tags = $data->tags;
-$user->title = $data->title;
-$user->body = $data->body;
+$user->email = $data->email;
+$user->name = $data->name;
 
 if($user->create()) {
     print_r(json_encode(
