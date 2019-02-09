@@ -68,7 +68,32 @@ class User {
     
     // signup user
     public function create() {
+        $query = 'INSERT INTO '. $this->table .'
+            SET 
+                username = :username,
+                password = :password,
+                email = :email,
+                name = :name';
+        
+        $statement = $this->connect->prepare($query);
 
+        $this->username = htmlspecialchars(strip_tags($this->username));
+        $this->password = htmlspecialchars(strip_tags($this->password));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->name = htmlspecialchars(strip_tags($this->name));
+
+        $statement->bindParam(':username', $this->username);
+        $statement->bindParam(':password', $this->password);
+        $statement->bindParam(':email', $this->email);
+        $statement->bindParam(':name', $this->name);
+
+        if($statement->execute()) {
+            return true;
+        }
+
+        printf("Error : %s", $statement->error);
+
+        return false;
     }
 
     public function update() {
