@@ -40,10 +40,10 @@
 
 
 ##### Users
-  - [ ] **GET** /api/users/index.php
-  - [ ] **GET** /api/users/show.php?id=$id
-  - [ ] **PUT** /api/users/update.php
-  - [ ] **DELETE** /api/users/delete.php
+  - [x] **GET** /api/users/index.php
+  - [x] **GET** /api/users/show.php?id=$id
+  - [x] **PUT** /api/users/update.php
+  - [x] **DELETE** /api/users/delete.php
   - [ ] **POST** /api/users/signup.php
   - [ ] **POST** /api/users/login.php
   - [ ] **POST** /api/users/forgot_password.php
