@@ -177,6 +177,22 @@ class User {
     }
 
     public function forgotPassword() {
+        $query = 'SELECT
+            username,
+            email
+            name,
+        FROM '. $this->table .'
+        WHERE username = :username OR email = :email';
 
+        $this->username = htmlspecialchars(strip_tags($this->username));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+
+        if($statement->execute()) {
+            return true;
+        }
+
+        printf("Error : %s", $statement->error);
+
+        return false;
     }
 }

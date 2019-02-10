@@ -15,13 +15,13 @@ $user = new User($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
-$user->password = $data->password;
-
 if(isset($data->email)&& !empty($data->username)) { 
-     $user->email = $data->email;
+    $user->email = $data->email;
 } else if(isset($data->username) && !empty($data->username)) {
-     $user->username = $data->username;
+    $user->username = $data->username;
 }
+
+$user->password = $data->password;
 
 if($user->create()) {
     print_r(json_encode(
