@@ -15,3 +15,18 @@ $user = new User($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
+if(isset($data->email) && !empty($data->email)) {
+    $user->email = $data->email;
+} else if(isset($data->username) && !empty($data->username)) {
+    $user->username = $data->username;
+}
+
+if($user->forgotPassword()) {
+    print_r(json_encode(
+        array('message' => 'Check your email!')
+    ));
+} else {
+    print_r(json_encode(
+        array('message' => 'Email / Username not found!')
+    ));
+}
