@@ -15,7 +15,7 @@ $user = new User($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
-if(isset($data->email)&& !empty($data->username)) { 
+if(isset($data->email)&& !empty($data->email)) { 
     $user->email = $data->email;
 } else if(isset($data->username) && !empty($data->username)) {
     $user->username = $data->username;
