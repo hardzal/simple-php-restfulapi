@@ -23,12 +23,12 @@ if(isset($data->email)&& !empty($data->email)) {
 
 $user->password = $data->password;
 
-if($user->create()) {
+if($user->login()) {
     print_r(json_encode(
-        array('message' => 'User created')
+        array('message' => 'User success login')
     ));
 } else {
     print_r(json_encode(
-        array('message' => 'User not created')
+        array('message' => 'User not login')
     ));
 }

@@ -17,8 +17,9 @@ $data = json_decode(file_get_contents("php://input"));
 
 $user->id = $data->id;
 $user->username = $data->username;
-$user->name = $data->name;
+$user->password = $data->password;
 $user->email = $data->email;
+$user->name = $data->name;
 
 // Error while set the same username with others
 if($user->update()) {

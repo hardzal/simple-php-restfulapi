@@ -9,6 +9,7 @@ class User {
     public $username;
     public $email;
     public $name;
+    public $password;
     public $created_at;
     public $updated_at;
 
@@ -101,7 +102,8 @@ class User {
             SET
                 username = :username,
                 name = :name,
-                email = :email
+                email = :email,
+                password = :password
             WHERE
                 id = :id';
         
@@ -110,9 +112,13 @@ class User {
         $this->username = htmlspecialchars(strip_tags($this->username));
         $this->name = htmlspecialchars(strip_tags($this->name));
         $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->password = htmlspecialchars(strip_tags($this->password));
         $this->id = htmlspecialchars(strip_tags($this->id));
 
+        $this->password = password_hash($this->password, PASSWORD_BCRYPT, ['cost' => 12]);
+
         $statement->bindParam(':username', $this->username);
+        $statement->bindParam(':password', $this->password);
         $statement->bindParam(':name', $this->name);
         $statement->bindParam(':email', $this->email);
         $statement->bindParam(':id', $this->id);
@@ -151,23 +157,26 @@ class User {
                 username,
                 password,
                 email,
-                name,
+                name
             FROM '. $this->table. '    
-            WHERE email = ? OR username = ?';
+            WHERE email = :email OR username = :username';
         
         $statement = $this->connect->prepare($query);
 
         $this->username = htmlspecialchars(strip_tags($this->username));
         $this->password = htmlspecialchars(strip_tags($this->password));
         $this->email = htmlspecialchars(strip_tags($this->email));
-
-        $statement->bindParam(1, $this->username);
-        $statement->bindParam(2, $this->email);
+        
+        $statement->bindParam(':username', $this->username);
+        $statement->bindParam(':email', $this->email);
 
         if($statement->execute()) {
             $user = $statement->fetch(PDO::FETCH_ASSOC);
             if(password_verify($this->password, $user['password'])) {
                 return true;
+            } else {
+                printf("Password wrong!\n");
+                return false;
             }
         }
 
@@ -180,12 +189,17 @@ class User {
         $query = 'SELECT
             username,
             email
-            name,
+            name
         FROM '. $this->table .'
         WHERE username = :username OR email = :email';
 
+        $statement = $this->connect->prepare($query);
+
         $this->username = htmlspecialchars(strip_tags($this->username));
         $this->email = htmlspecialchars(strip_tags($this->email));
+
+        $statement->bindParam(':username', $this->username);
+        $statement->bindParam(':email', $this->email);
 
         if($statement->execute()) {
             return true;

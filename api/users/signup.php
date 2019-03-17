@@ -16,7 +16,7 @@ $user = new User($db);
 $data = json_decode(file_get_contents("php://input"));
 
 $user->username = $data->username;
-$user->password = password_hash($data->password, PASSWORD_DEFAULT);
+$user->password = password_hash($data->password, PASSWORD_BCRYPT, ['cost' => 12]);
 $user->email = $data->email;
 $user->name = $data->name;
 
