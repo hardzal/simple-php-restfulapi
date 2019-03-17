@@ -109,7 +109,28 @@ class Comment {
 
     public function update() 
     {
-           
+        $query = 'UPDATE '. $this->table .'
+            SET
+                comment = :comment,
+                updated_at = now()
+            WHERE 
+                id = :id';
+
+        $statement = $this->connect->prepare($query);
+        
+        $this->body = htmlspecialchars(strip_tags($this->body));
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        $statement->bindParam(':id', $this->id);
+        $statement->bindParam(':comment', $this->body);
+
+        if($statement->execute()) {
+            return true;
+        }        
+        
+        printf("Error : %s.\n", $statement->error);
+
+        return false;
     }
 
     public function delete() 
