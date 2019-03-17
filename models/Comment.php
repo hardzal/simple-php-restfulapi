@@ -82,12 +82,34 @@ class Comment {
 
     public function create() 
     {
+        $query = 'INSERT INTO '. $this->table .'
+            SET 
+                post_id = :post_id,
+                user_id = :user_id,
+                comment = :comment';
 
+        $statement = $this->connect->prepare($query);
+        
+        $this->user_id = htmlspecialchars(strip_tags($this->user_id));
+        $this->post_id = htmlspecialchars(strip_tags($this->post_id));
+        $this->body = htmlspecialchars(strip_tags($this->body));
+
+        $statement->bindParam(':user_id', $this->user_id);
+        $statement->bindParam(':post_id', $this->post_id);
+        $statement->bindParam(':comment', $this->body);
+        
+        if($statement->execute()) {
+            return true;
+        }
+
+        printf("Error: %s.\n", $statement->error);
+
+        return false;
     }
 
     public function update() 
     {
-
+           
     }
 
     public function delete() 
