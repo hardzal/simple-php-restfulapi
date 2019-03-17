@@ -209,7 +209,7 @@ class Post {
             p.id,
             p.user_id,
             u.username,
-            p.category_id
+            p.category_id,
             p.title,
             p.body,
             c.name as category_name,
@@ -235,7 +235,30 @@ class Post {
     }
 
     public function show_posts_by_tag() {
-        $query = '';
+        $query = 'SELECT 
+            p.id,
+            p.user_id,
+            u.username,
+            p.category_id,
+            p.title,
+            p.body,
+            c.name as category_name,
+            t.name as tag_name,
+            p.created_at,
+            p.updated_at
+        FROM post_tags pt 
+            LEFT JOIN 
+                posts p ON p.id = pt.post_id
+            LEFT JOIN 
+                categories c ON p.category_id = c.id
+            LEFT JOIN
+                users u ON p.user_id = u.id
+            LEFT JOIN
+                tags t ON t.id = pt.tag_id
+        WHERE 
+            pt.tag_id = ? 
+        ORDER BY 
+            p.created_at DESC';
 
         $statement = $this->connect->prepare($query);
 

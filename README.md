@@ -10,14 +10,12 @@
 - [x] **PUT** /api/posts/update.php
 - [x] **DELETE** /api/posts/delete.php
 
-
 ##### Categories
 - [x] **GET** /api/categories/index.php
 - [x] **GET** /api/categoris/show.php?id=$id
 - [x] **POST** /api/categories/create.php
 - [x] **PUT** /api/categories/update.php
 - [x] **DELETE** /api/categoris/delete.php
-
 
 ##### Tags
 - [x] **GET** /api/tags/index.php
@@ -47,3 +45,7 @@
   - [ ] **POST** /api/users/signup.php
   - [ ] **POST** /api/users/login.php
   - [ ] **POST** /api/users/forgot_password.php
+
+##### Comments
+
+############ add pagination

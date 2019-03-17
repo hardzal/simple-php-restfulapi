@@ -106,6 +106,7 @@ if(isset($_GET)) {
                     'username' => $username,
                     'category_id' => $category_id,
                     'category_name' => $category_name,
+                    'tag_name' => $tag_name,
                     'created_at' => $created_at,
                     'updated_at' => $updated_at
                 );
