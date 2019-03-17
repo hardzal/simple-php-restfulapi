@@ -268,8 +268,4 @@ class Post {
 
         return $statement;    
     }
-
-    public function show_tags() {
-        $query = '';
-    }
 }

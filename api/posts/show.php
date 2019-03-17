@@ -21,6 +21,7 @@ $post_array = array(
     'username' => $post->user_name,
     'category_id' => $post->category_id,
     'category_name' => $post->category_name,
+    'tag' => [],
     'title' => $post->title,
     'body' => $post->body,
     'created_at' => $post->created_at,

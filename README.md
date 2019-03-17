@@ -24,17 +24,16 @@
 - [x] **PUT** /api/tags/update.php
 - [x] **DELETE** /api/tags/delete.php
 
-
 ##### Posts by Category (one to many)
   - [x] **GET** /api/posts/posts.php?category=$id
 
 
 ##### Posts by user (one to many)
-  - [ ] **GET** /api/posts/posts.php?user=$id
+  - [x] **GET** /api/posts/posts.php?user=$id
 
 
 ##### Posts by tags (many to many)
-  - [ ] **GET** /api/posts/posts.php?tag=$id 
+  - [x] **GET** /api/posts/posts.php?tag=$id 
 
 
 ##### Users
@@ -47,5 +46,9 @@
   - [ ] **POST** /api/users/forgot_password.php
 
 ##### Comments
-
+  - [ ] **GET** /api/comments/index.php
+  - [ ] **GET** /api/comments/show.php?id=$id
+  - [ ] **PUT** /api/comments/update.php
+  - [ ] **DELETE** /api/comments/delete.php
+  
 ############ add pagination
