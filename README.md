@@ -44,7 +44,7 @@
   - [x] **GET** /api/users/show.php?id=$id
   - [x] **PUT** /api/users/update.php
   - [x] **DELETE** /api/users/delete.php
-  - [ ] **POST** /api/users/signup.php
+  - [x] **POST** /api/users/signup.php
   - [ ] **POST** /api/users/login.php
   - [ ] **POST** /api/users/forgot_password.php
 
@@ -55,8 +55,13 @@
   - [x] **PUT** /api/comments/update.php
   - [x] **DELETE** /api/comments/delete.php
 
-  
+
 ###### optional features
- - [ ] authentication
+ - [ ] authentication 
  - [ ] validation
  - [ ] pagination
+
+-----
+### Login Auth
+username: first_admin
+password: password_admin
