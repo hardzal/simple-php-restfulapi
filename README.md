@@ -42,7 +42,7 @@
 #### Users
   - [x] **GET** /api/users/index.php
   - [x] **GET** /api/users/show.php?id=$id
-  - [x] **PUT** /api/users/update.php
+  - [x] **PUT** /api/users/update.php 
   - [x] **DELETE** /api/users/delete.php
   - [x] **POST** /api/users/signup.php
   - [ ] **POST** /api/users/login.php
