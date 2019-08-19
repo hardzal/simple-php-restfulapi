@@ -15,12 +15,24 @@ $result = $post->index();
 
 $num = $result->rowCount();
 
-if($num > 0) {
+if ($num > 0) {
     $posts_array = array();
     $posts_array['posts'] = array();
 
-    while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
+
+        $tags = array();
+
+        $result_tag = $post->show_all_tag($id);
+
+        $num_tag = $result_tag->rowCount();
+
+        if ($num_tag > 0) {
+            while ($tag = $result_tag->fetch(PDO::FETCH_ASSOC)) {
+                array_push($tags, $tag['name']);
+            }
+        }
 
         $post_item = array(
             'id' => $id,

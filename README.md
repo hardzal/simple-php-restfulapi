@@ -11,6 +11,17 @@
 - [x] **DELETE** /api/posts/delete.php
 
 
+#### Posts by Category 
+  - [x] **GET** /api/posts/posts.php?category=$id
+
+
+#### Posts by user
+  - [x] **GET** /api/posts/posts.php?user=$id
+
+
+#### Posts by tags
+  - [x] **GET** /api/posts/posts.php?tag=$id 
+
 #### Categories
 - [x] **GET** /api/categories/index.php
 - [x] **GET** /api/categoris/show.php?id=$id
@@ -26,19 +37,6 @@
 - [x] **PUT** /api/tags/update.php
 - [x] **DELETE** /api/tags/delete.php
 
-
-#### Posts by Category 
-  - [x] **GET** /api/posts/posts.php?category=$id
-
-
-#### Posts by user
-  - [x] **GET** /api/posts/posts.php?user=$id
-
-
-#### Posts by tags
-  - [x] **GET** /api/posts/posts.php?tag=$id 
-
-
 #### Users
   - [x] **GET** /api/users/index.php
   - [x] **GET** /api/users/show.php?id=$id
@@ -49,17 +47,17 @@
   - [ ] **POST** /api/users/forgot_password.php
 
 
-#### Comments
+#### Comments 
   - [x] **GET** /api/comments/index.php
+  - [x] **GET** /api/comments/index.php?post=$id
+  - [x] **GET** /api/comments/index.php?post=$id&user=$id
+  - [x] **GET** /api/comments/index.php?user=$id
   - [x] **GET** /api/comments/show.php?id=$id
   - [x] **PUT** /api/comments/update.php
   - [x] **DELETE** /api/comments/delete.php
 
-
-###### optional features
+### authentications
  - [ ] authentication 
- - [ ] validation
- - [ ] pagination
 
 -----
 ### Login Auth

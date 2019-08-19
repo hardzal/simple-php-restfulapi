@@ -1,8 +1,9 @@
 <?php
 
-class Comment {
+class Comment
+{
     // properties    
-   
+
     // properties database
     private $connect;
     private $table = 'comments';
@@ -20,8 +21,20 @@ class Comment {
         $this->connect = $db_connection;
     }
 
-    public function index() 
+    public function index($post_id = null, $user_id = null, $type = null)
     {
+        $where = "";
+
+        if ($post_id != null && $user_id != null) {
+            if ($type == 'post') {
+                $where = "WHERE p.id = $post_id";
+            } else if ($type == 'user') {
+                $where = "WHERE u.id = $user_id";
+            } else if ($type == 'post_user') {
+                $where = "WHERE  p.id = $post_id AND u.id = $user_id";
+            }
+        }
+
         $query = 'SELECT 
             c.id,
             u.username,
@@ -29,22 +42,23 @@ class Comment {
             c.comment,
             c.created_at,
             c.updated_at
-        FROM '.$this->table. ' c
+        FROM ' . $this->table . ' c
         LEFT JOIN
             posts p ON c.post_id=p.id
         LEFT JOIN
             users u ON c.user_id=u.id
+        ' . $where . '
         ORDER BY
             c.created_at DESC';
 
         $statement = $this->connect->prepare($query);
 
         $statement->execute();
-        
+
         return $statement;
     }
 
-    public function show() 
+    public function show()
     {
         $query = 'SELECT 
             c.id,
@@ -54,7 +68,7 @@ class Comment {
             c.comment,
             c.created_at,
             c.updated_at
-        FROM '.$this->table. ' c
+        FROM ' . $this->table . ' c
         LEFT JOIN
             posts p ON c.post_id=p.id
         LEFT JOIN
@@ -80,16 +94,16 @@ class Comment {
         $this->updated_at = $row['updated_at'];
     }
 
-    public function create() 
+    public function create()
     {
-        $query = 'INSERT INTO '. $this->table .'
+        $query = 'INSERT INTO ' . $this->table . '
             SET 
                 post_id = :post_id,
                 user_id = :user_id,
                 comment = :comment';
 
         $statement = $this->connect->prepare($query);
-        
+
         $this->user_id = htmlspecialchars(strip_tags($this->user_id));
         $this->post_id = htmlspecialchars(strip_tags($this->post_id));
         $this->body = htmlspecialchars(strip_tags($this->body));
@@ -97,8 +111,8 @@ class Comment {
         $statement->bindParam(':user_id', $this->user_id);
         $statement->bindParam(':post_id', $this->post_id);
         $statement->bindParam(':comment', $this->body);
-        
-        if($statement->execute()) {
+
+        if ($statement->execute()) {
             return true;
         }
 
@@ -107,9 +121,9 @@ class Comment {
         return false;
     }
 
-    public function update() 
+    public function update()
     {
-        $query = 'UPDATE '. $this->table .'
+        $query = 'UPDATE ' . $this->table . '
             SET
                 comment = :comment,
                 updated_at = now()
@@ -117,25 +131,25 @@ class Comment {
                 id = :id';
 
         $statement = $this->connect->prepare($query);
-        
+
         $this->body = htmlspecialchars(strip_tags($this->body));
         $this->id = htmlspecialchars(strip_tags($this->id));
 
         $statement->bindParam(':id', $this->id);
         $statement->bindParam(':comment', $this->body);
 
-        if($statement->execute()) {
+        if ($statement->execute()) {
             return true;
-        }        
-        
+        }
+
         printf("Error : %s.\n", $statement->error);
 
         return false;
     }
 
-    public function delete() 
+    public function delete()
     {
-        $query = 'DELETE FROM '. $this->table . ' WHERE id = :id';
+        $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
 
         $statement = $this->connect->prepare($query);
 
@@ -143,7 +157,7 @@ class Comment {
 
         $statement->bindParam(':id', $this->id);
 
-        if($statement->execute()) {
+        if ($statement->execute()) {
             return true;
         }
 
